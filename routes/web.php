@@ -11,10 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+	return "feliz?";
 });
 
-Auth::routes();
+Route::group(['middleware' => 'AuthUsuario'],function(){
+	Route::get('inicio',function(){
+		return view('show');	
+	})->name('inicio');
 
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('logout','ContaUsuario@logout')->name('logout');
+});
+
+Route::group(['middleware' => 'NoAuthUsuario'],function(){
+	Route::get('login',function(){
+		return view('login');
+	});
+
+	Route::get('cadastro',function(){
+		return view('register');
+	});
+
+	Route::post('cadastro','ContaUsuario@cadastro')->name('cadastro');
+
+	Route::post('login','ContaUsuario@login')->name('login');
+
+});
