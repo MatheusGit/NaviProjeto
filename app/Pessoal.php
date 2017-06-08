@@ -13,6 +13,6 @@ class Pessoal extends Model
     ];
 
     public function login(){
-    	return $this->belongTo('App/login');
+    	return $this->belongTo('App/login','login_id');
     }
 }

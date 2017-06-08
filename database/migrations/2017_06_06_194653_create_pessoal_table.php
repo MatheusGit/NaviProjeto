@@ -15,9 +15,10 @@ class CreatePessoalTable extends Migration
     {
         Schema::create('pessoal', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('login_id')->unsigned();
             $table->string('name');
-            $table->integer('cpf')->unsigned();
-            $table->foreign('cpf')
+            $table->integer('cpf');
+            $table->foreign('login_id')
                     ->references('id')
                     ->on('logins')
                     ->onDelete('cascade');

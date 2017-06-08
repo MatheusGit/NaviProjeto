@@ -11,6 +11,6 @@ class login extends Authenticatable
     ];
 
     public function pessoal(){
-    	return $this->hasOne('App/Pessoal');
+    	return $this->hasOne('App/Pessoal','login_id');
     }
 }
