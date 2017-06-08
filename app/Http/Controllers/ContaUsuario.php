@@ -47,17 +47,7 @@ class ContaUsuario extends Controller
 	} 
 
     public function cadastrotwo(RegisterTwoFormRequest $request){
-        $senha = $request->get('password');
-        $dataForm = $request->all();
-        $dataForm['password'] = bcrypt($senha);    
-        $insert = $this->logins->create($dataForm);
-
-        if($insert){
-                return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'] ]);
-        }else{
-                return redirect()
-                        ->back();  
-            } 
+        
     } 
 
     public function logout(){

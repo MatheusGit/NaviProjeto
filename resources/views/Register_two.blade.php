@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.cadastro_two')
 
 @section('content')
 <div class="container">
@@ -30,7 +30,7 @@
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="11" maxlength="11" placeholder='XXXXXXXXXXX' required>
+                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="6" maxlength="9" placeholder='XXXXXXXXXXX' required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -44,7 +44,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="XXXXXXXXX" required>
+                                <input id="rg" type="text" class="form-control" pattern="\d*" name="rg" placeholder="XXXXXXXXX" minlength="11" maxlength="11" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -71,24 +71,43 @@
                         <div class="form-group">
                             <label for="datanasc" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <select>
+                                <select id="select_genero" name="genero" onchange="verificaroutro()">
+                                    <option value="" disabled selected>Escolha uma opção</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
-                                    <option value="Outro">Outro</option>
+                                    <option value="Outro">Outro...</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        
+                        <script>
+                            function verificaroutro() {
+                                var option = document.getElementById('select_genero').value;
+                                var valuee = "Outro";
+                                if(option == valuee){
+                                    document.getElementById("invisivel").style.display = 'block';
+                                }else{
+                                    document.getElementById("invisivel").style.display = 'none';
+                                }
+                            }
+                        </script>
+
+
+                        <div id="invisivel" class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Qual gênero?</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name= "outro" required>
+                            </div>
+                        </div>
+
+                        <div id="botoes" class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
-                                <a href="{{route('login')}}" class="btn btn-primary">
-                                    Login
-                                </a>
                             </div>
-                        </div>
+                        </div>                        
                     </form>
                 </div>
             </div>

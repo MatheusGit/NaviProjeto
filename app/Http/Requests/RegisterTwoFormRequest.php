@@ -24,7 +24,7 @@ class RegisterTwoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cpf' => 'required|integer|between:5,60|string',
         ];
     }
 }
