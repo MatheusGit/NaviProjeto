@@ -32,7 +32,13 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 		return view('register');
 	});
 
+	Route::get('cadastro/2-passo',function(){
+		return redirect()->route('cadastro');
+	});
+
 	Route::post('cadastro','ContaUsuario@cadastro')->name('cadastro');
+
+	Route::post('cadastro/2-passo','ContaUsuario@cadastrotwo')->name('cadastro_two');
 
 	Route::post('login','ContaUsuario@login')->name('login');
 

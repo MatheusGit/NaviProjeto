@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Meus dados - Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('cadastro') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('cadastro_two') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -30,7 +30,7 @@
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="number" class="form-control" name="cpf" placeholder='XXXXXXXXXXX' required>
+                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="11" maxlength="11" placeholder='XXXXXXXXXXX' required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">

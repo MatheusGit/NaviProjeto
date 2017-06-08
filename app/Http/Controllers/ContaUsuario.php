@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
+use App\Http\Requests\RegisterTwoFormRequest;
 use App\login;
 use Auth;
 
@@ -44,6 +45,20 @@ class ContaUsuario extends Controller
                         ->back();  
             } 
 	} 
+
+    public function cadastrotwo(RegisterTwoFormRequest $request){
+        $senha = $request->get('password');
+        $dataForm = $request->all();
+        $dataForm['password'] = bcrypt($senha);    
+        $insert = $this->logins->create($dataForm);
+
+        if($insert){
+                return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'] ]);
+        }else{
+                return redirect()
+                        ->back();  
+            } 
+    } 
 
     public function logout(){
         Auth::guard('logins')->logout();
