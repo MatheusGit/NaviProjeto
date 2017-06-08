@@ -5,63 +5,77 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Meus dados - Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('cadastro') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <div class="col-md-6">
+                                   {{$name}}
+                                </div>
+                        </div>
 
-                                @if ($errors->has('name'))
+                         <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Email</label>
+                                <div class="col-md-6">
+                                   {{$email}}
+                                </div>   
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">CPF</label>
+
+                            <div class="col-md-6">
+                                <input id="cpf" type="number" class="form-control" name="cpf" placeholder='XXXXXXXXXXX' required>
+
+                                @if ($errors->has('cpf'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('cpf') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('rg') ? ' has-error' : '' }}">
+                            <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="XXXXXXXXX" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('rg'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('rg') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                         <div class="form-group{{ $errors->has('datanasc') ? ' has-error' : '' }}">
+                            <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
+                                <input id="datanasc" type="date" class="form-control" name="datanasc" required>
+                                <strong>teste teste teste</strong>
+                                @if ($errors->has('datanasc'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('datanasc') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                         <div class="form-group{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
-                            <label for="confirm_password" class="col-md-4 control-label">Confirm Password</label>
-
+                        <div class="form-group">
+                            <label for="datanasc" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
-                                @if ($errors->has('confirm_password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('confirm_password') }}</strong>
-                                    </span>
-                                @endif
+                                <select>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
                             </div>
                         </div>
 
@@ -69,6 +83,9 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
+                                </button>
+                                <button type="button" href="{{route('login')}}" class="btn btn-primary">
+                                    Login
                                 </button>
                             </div>
                         </div>

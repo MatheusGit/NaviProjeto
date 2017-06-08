@@ -38,7 +38,7 @@ class ContaUsuario extends Controller
     	$insert = $this->logins->create($dataForm);
 
         if($insert){
-                return redirect()->route('login');
+                return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'] ]);
         }else{
                 return redirect()
                         ->back();  
