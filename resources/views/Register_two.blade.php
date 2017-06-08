@@ -84,9 +84,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
-                                <button type="button" href="{{route('login')}}" class="btn btn-primary">
+                                <a href="{{route('login')}}" class="btn btn-primary">
                                     Login
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
