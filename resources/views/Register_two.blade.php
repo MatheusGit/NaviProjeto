@@ -44,7 +44,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" pattern="\d*" name="rg" placeholder="XXXXXXXXX" minlength="11" maxlength="11" required>
+                                <input id="rg" type="text" class="form-control" pattern="\d*" name="rg" placeholder="XXXXXXXXX" minlength="6" maxlength="9" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">

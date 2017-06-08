@@ -24,7 +24,22 @@ class RegisterTwoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => 'required|integer|between:5,60|string',
+            'cpf' => 'required|between:11,11',
+            'rg' => 'required|between:9,9',
+            'datanasc' => 'required',
+            'genero' => 'required',
+            'outro' => 'string',
         ];
     }
+
+    public function messages(){
+        return [
+            'cpf.required' => 'O campo CPF é obrigatório',
+            'cpf.between' => 'O campo CPF deve conter 11 dígitos',
+            'rg.required' => 'O campo RG é obrigatório',
+            'RG.between' => 'O campo RG deve conter 9 dígitos',
+            'datanasc.required' => 'O campo Data de nascimento é obrigatório',
+            'genero.required' => 'O campo Gênero é obrigatório',
+            'outro.string' => 'O campo Qual gênero? deve possui apenas letras'
+        ];
 }
