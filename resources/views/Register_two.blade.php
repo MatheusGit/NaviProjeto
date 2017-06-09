@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Meus dados - Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!</div>
+                <div id="register" class="panel-heading"> Cadastro - Passo 2 
+                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Meus dados" data-content="Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!">?</button></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('cadastro_two') }}">
                         {{ csrf_field() }}
@@ -33,7 +34,7 @@
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="6" maxlength="9" placeholder='XXXXXXXXXXX' required>
+                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="6" maxlength="11" placeholder='XXXXXXXXXXX' required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -145,7 +146,7 @@
                         <div id="botoes" class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Cadastrar
                                 </button>
                             </div>
                         </div>                        
