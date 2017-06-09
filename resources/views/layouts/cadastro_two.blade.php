@@ -13,15 +13,103 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-         #invisivel{
+        #invisivel{
               display:none;
         }       
+
+        #cep{
+            display:none;
+        }
+
         #botoes{
         	width: 1500px;
-		}		
-       
-        
+		}	
+
+        #labeldados{
+            display: block;
+            width:200px;
+          
+            font-size: 14px;
+        } 
+
+        #labelendereco{
+            display: inline-block;
+            width:200px;
+            
+            font-size: 14px;
+        }	   
+
+
     </style>
+
+    
+    <script>
+        function verificaroutro() {
+            var option = document.getElementById('select_genero').value;
+            var valuee = "Outro";
+                if(option == valuee){
+                    document.getElementById("invisivel").style.display = 'block';
+                }else{
+                    document.getElementById("invisivel").style.display = 'none';
+                }
+        }
+
+        function limpa_formulário_cep() {
+            document.getElementById("cep").style.display = 'none';
+
+            document.getElementById('cep').value=("");
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+        }
+
+        function meu_callback(conteudo) {
+
+            if (!("erro" in conteudo)) {    
+                document.getElementById('cepstrong').innerHTML = "";
+
+                document.getElementById("cep").style.display = 'block';
+
+                document.getElementById('rua').value=(conteudo.logradouro);
+                document.getElementById('bairro').value=(conteudo.bairro);
+                document.getElementById('cidade').value=(conteudo.localidade);
+                document.getElementById('uf').value=(conteudo.uf);
+            } 
+            else {
+                limpa_formulário_cep();
+                document.getElementById('cepstrong').innerHTML = "Cep não encontrado";
+            }
+        }
+
+        function pesquisacep(valor){
+                var cep = valor.replace(/\D/g, '');
+                if (cep != "") {
+
+                var validacep = /^[0-9]{8}$/;
+
+                if(validacep.test(cep)) {
+
+                    document.getElementById('rua').value="...";
+                    document.getElementById('bairro').value="...";
+                    document.getElementById('cidade').value="...";
+                    document.getElementById('uf').value="...";
+
+                    var script = document.createElement('script');
+                    script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                    document.body.appendChild(script);
+
+                } 
+                else {
+                    limpa_formulário_cep();
+                    document.getElementById('cepstrong').innerHTML = "Formato de cep inválido";
+                }
+            } 
+            else {
+                limpa_formulário_cep();
+            }
+        }
+     </script>
 </head>
 <body>
     <div id="app">
