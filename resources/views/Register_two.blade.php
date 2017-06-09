@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nome</label>
 
                                 <div class="col-md-6">
                                    {{$name}}
@@ -21,10 +21,13 @@
                          <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Email</label>
                                 <div class="col-md-6">
-                                   {{$email}}
+                                    {{$email}}
                                 </div>   
                         </div>
 
+                        <hr>
+
+                        <label id="labeldados">Dados pessoais:</label>
 
                         <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">CPF</label>
@@ -59,7 +62,6 @@
 
                             <div class="col-md-6">
                                 <input id="datanasc" type="date" class="form-control" name="datanasc" required>
-                                <strong>teste teste teste</strong>
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('datanasc') }}</strong>
@@ -80,26 +82,65 @@
                             </div>
                         </div>
 
-                        
-                        <script>
-                            function verificaroutro() {
-                                var option = document.getElementById('select_genero').value;
-                                var valuee = "Outro";
-                                if(option == valuee){
-                                    document.getElementById("invisivel").style.display = 'block';
-                                }else{
-                                    document.getElementById("invisivel").style.display = 'none';
-                                }
-                            }
-                        </script>
-
-
                         <div id="invisivel" class="form-group">
                             <label for="rg" class="col-md-4 control-label">Qual gênero?</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name= "outro" required>
+                                <input type="text" class="form-control" name= "outro" placeholder="Outro..." required>
                             </div>
                         </div>
+
+                        <hr>
+
+                        <label id="labelendereco"><b>Endereço:</b></label>
+
+                        <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">CEP</label>
+                            <div class="col-md-6">
+                                <input type="text" pattern="\d*" class="form-control" name="cep" size="10" maxlength="9" placeholder="XXXXXXXXX" onblur="pesquisacep(this.value);" required>
+                                <span class="has-error">
+                                     <strong id="cepstrong"></strong>
+                                </span>
+                            </div>
+                        </div>    
+
+                        <div id="cep">
+                            <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Rua</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="rua" name= "rua" disabled="yes">
+                            </div>
+                            </div> 
+
+                            <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Número</label>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" id="numero" name="numero" min="0" placeholder="Número de sua casa" required>
+                            </div>
+                            </div> 
+
+                            <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Bairro</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="bairro" name="bairro" disabled="yes">
+                            </div>
+                            </div> 
+
+                            <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Cidade</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="cidade" name="cidade" disabled="yes">
+                            </div>
+                            </div> 
+
+                            <div class="form-group">
+                            <label for="rg" class="col-md-4 control-label">Estado</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="uf" name="uf" disabled="yes">
+                            </div>
+                            </div>
+                        </div>
+
+                        <hr>
 
                         <div id="botoes" class="form-group">
                             <div class="col-md-6 col-md-offset-4">

@@ -26,7 +26,7 @@ class LoginFormRequest extends FormRequest
     {
         return [
             'email' => 'required|email|between:8,50|exists:logins,email',
-            'password' => 'required|between:8,60',
+            'password' => 'required|between:5,60',
         ];
     }
 
