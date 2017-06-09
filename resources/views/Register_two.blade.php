@@ -6,7 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div id="register" class="panel-heading"> Cadastro - Passo 2 
-                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Meus dados" data-content="Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!">?</button></div>
+                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Meus dados" data-content="Você já está cadastrado! Preencha essa informações agora ou depois, logando quando quiser!">?</button>
+                </div>
+                
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('cadastro_two') }}">
                         {{ csrf_field() }}
@@ -143,8 +145,30 @@
 
                         <hr>
 
-                        <div id="botoes" class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                        <label id="labeldados">Segurança:</label>
+
+                        <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Senha</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                           <div class="col-md-4 col-md-offset-4">
+                                <a href="{{route('login')}}" class="btn btn-primary">
+                                    Cancelar
+                                </a>
+                            </div>
+                             <div class="col-md-4 .col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Cadastrar
                                 </button>

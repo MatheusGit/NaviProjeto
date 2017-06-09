@@ -39,7 +39,11 @@ class ContaUsuario extends Controller
     	$insert = $this->logins->create($dataForm);
 
         if($insert){
+            if($dataForm['botao'] == 'cadastro'){
+                return redirect()->route('login');
+            }else if($dataForm['botao'] == 'passo'){
                 return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'] ]);
+            }            
         }else{
                 return redirect()
                         ->back();  
