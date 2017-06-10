@@ -17,10 +17,10 @@ Route::get('/',function(){
 
 Route::group(['middleware' => 'AuthUsuario'],function(){
 	Route::get('inicio',function(){
-		return view('show');	
+		return view('inicio');	
 	})->name('inicio');
 
-	Route::get('logout','ContaUsuario@logout')->name('logout');
+	Route::get('logout','ContaUsuario@logout')->name('sair');
 });
 
 Route::group(['middleware' => 'NoAuthUsuario'],function(){

@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Http\Requests\RegisterTwoFormRequest;
 use App\login;
+use App\Pessoal;
 use validate;
 use Auth;
 
@@ -76,11 +77,6 @@ class ContaUsuario extends Controller
 
         $validate = validator($request->all(), $rules,$messages);
 
-        $validator->after(function ($validate) {
-            if (strlen($request->get('cpf')->size) == 6 || strlen($request->get('cpf')->size) == 9 ) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
-            }
-        });
 
         if($validate->fails() ){
             return $validate;
