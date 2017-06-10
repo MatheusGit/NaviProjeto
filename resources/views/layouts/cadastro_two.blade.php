@@ -15,14 +15,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script async="" src="//www.google-analytics.com/analytics.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     
     <style>
 
@@ -37,6 +29,10 @@
         }       
 
         #cep{
+            display:none;
+        }
+
+        #divcomplemento{
             display:none;
         }
 
@@ -67,14 +63,31 @@
             var option = document.getElementById('select_genero').value;
             var valuee = "Outro";
                 if(option == valuee){
+                    document.getElementById("inputoutro").innerHTML = '<input type="text" class="form-control" name= "outro" placeholder="Outro..." required>';
                     document.getElementById("invisivel").style.display = 'block';
                 }else{
+                    document.getElementById("inputoutro").innerHTML = '';
                     document.getElementById("invisivel").style.display = 'none';
                 }
         }
 
+        function verificarcomplemento() {
+            var option = document.getElementById('complemento').value;
+            var valuee = "Sim";
+                if(option == valuee){
+                    document.getElementById("inputcomplemento").innerHTML = '<input type="text" class="form-control" name= "complemento" placeholder="Complemento..." required>';
+                    document.getElementById("divcomplemento").style.display = 'block';
+                }else{
+                    document.getElementById("inputcomplemento").innerHTML = '';
+                    document.getElementById("divcomplemento").style.display = 'none';
+                }
+        }
+
         function limpa_formulário_cep() {
+            document.getElementById("cepmask").value = '';
             document.getElementById("cep").style.display = 'none';
+            document.getElementById("inputnumero").innerHTML ='';
+            document.getElementById('complemento').value = 'Nao';
 
             document.getElementById('cep').value=("");
             document.getElementById('rua').value=("");
@@ -89,6 +102,7 @@
                 document.getElementById('cepstrong').innerHTML = "";
 
                 document.getElementById("cep").style.display = 'block';
+                document.getElementById("inputnumero").innerHTML ='<input type="number" class="form-control" id="numero" name="numero" min="0" placeholder="Número de sua casa" required>';
 
                 document.getElementById('rua').value=(conteudo.logradouro);
                 document.getElementById('bairro').value=(conteudo.bairro);
@@ -193,5 +207,23 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    
+                        <script type="text/javascript">
+                            $().ready(function(){
+                                  $('#cpf').mask('000.000.000-00', {reverse: true});
+                                  $('#rg').mask('000.000.000');
+                                  $('#cepmask').mask('00000-000');
+                                  $('#datanasc').mask('00/00/0000');
+                            });  
+
+
+                        </script> 
+
+                          
 </body>
 </html>
+
+

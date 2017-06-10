@@ -51,7 +51,7 @@ class ContaUsuario extends Controller
 	} 
 
     public function cadastrotwo(RegisterTwoFormRequest $request){
-        
+        return 'Serio?';
     } 
 
     public function logout(){

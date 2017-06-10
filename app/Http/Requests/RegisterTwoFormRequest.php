@@ -29,6 +29,9 @@ class RegisterTwoFormRequest extends FormRequest
             'datanasc' => 'required',
             'genero' => 'required',
             'outro' => 'string',
+            'cep' => 'required',
+            'numero' => 'numeric|min:0'
+            'password' => 'required|between:5,60'
         ];
     }
 
@@ -42,4 +45,5 @@ class RegisterTwoFormRequest extends FormRequest
             'genero.required' => 'O campo Gênero é obrigatório',
             'outro.string' => 'O campo Qual gênero? deve possui apenas letras'
         ];
+    }
 }

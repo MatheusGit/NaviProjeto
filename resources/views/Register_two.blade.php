@@ -32,11 +32,13 @@
 
                         <label id="labeldados">Dados pessoais:</label>
 
+                        
+
                         <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" pattern="\d*" class="form-control" name="cpf" minlength="6" maxlength="11" placeholder='XXXXXXXXXXX' required>
+                                <input id="cpf" type="text" class="form-control" name="cpf" maxlength="14" placeholder='CPF' required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -50,7 +52,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" pattern="\d*" name="rg" placeholder="XXXXXXXXX" minlength="6" maxlength="9" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="6" maxlength="9" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -64,7 +66,8 @@
                             <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="datanasc" type="date" class="form-control" name="datanasc" required>
+                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" required>
+
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('datanasc') }}</strong>
@@ -88,7 +91,7 @@
                         <div id="invisivel" class="form-group">
                             <label for="rg" class="col-md-4 control-label">Qual gênero?</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name= "outro" placeholder="Outro..." required>
+                                <div id="inputoutro"> </div>
                             </div>
                         </div>
 
@@ -99,9 +102,9 @@
                         <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">CEP</label>
                             <div class="col-md-6">
-                                <input type="text" pattern="\d*" class="form-control" name="cep" size="10" maxlength="9" placeholder="XXXXXXXXX" onblur="pesquisacep(this.value);" required>
+                                <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" required>
                                 <span class="has-error">
-                                     <strong id="cepstrong"></strong>
+                                     <strong class="has-error" id="cepstrong"></strong>
                                 </span>
                             </div>
                         </div>    
@@ -117,7 +120,25 @@
                             <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">Número</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" id="numero" name="numero" min="0" placeholder="Número de sua casa" required>
+                                <div id="inputnumero"></div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="datanasc" class="col-md-4 control-label">Complemento?</label>
+                            <div class="col-md-6">
+                                <select id="complemento" name="complemento" onchange="verificarcomplemento()">
+                                    <option value="" disabled selected>Sim ou não?</option>
+                                    <option value="Sim">Sim</option>
+                                    <option value="Nao">Não</option>
+                                </select>
+                            </div>
+                            </div>
+
+                            <div class="form-group" id="divcomplemento">
+                            <label for="rg" class="col-md-4 control-label">Qual complemento?</label>
+                            <div class="col-md-6">
+                                <div id="inputcomplemento"> </div>
                             </div>
                             </div> 
 
@@ -141,6 +162,8 @@
                                 <input type="text" class="form-control" id="uf" name="uf" disabled="yes">
                             </div>
                             </div>
+
+                            
                         </div>
 
                         <hr>
@@ -180,4 +203,6 @@
         </div>
     </div>
 </div>
+                        <
+
 @endsection

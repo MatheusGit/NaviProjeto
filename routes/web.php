@@ -23,7 +23,7 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 	Route::get('logout','ContaUsuario@logout')->name('logout');
 });
 
-	Route::group(['middleware' => 'NoAuthUsuario'],function(){
+Route::group(['middleware' => 'NoAuthUsuario'],function(){
 	Route::get('login',function(){
 		return view('login');
 	});
