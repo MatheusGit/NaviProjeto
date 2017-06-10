@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Http\Requests\RegisterTwoFormRequest;
 use App\login;
+use validate;
 use Auth;
 
 class ContaUsuario extends Controller
@@ -19,9 +20,7 @@ class ContaUsuario extends Controller
 
 	public function login(LoginFormRequest $request){
 		$credenciais = ["email" => $request->get('email'),"password" => $request->get('password')];
-    	//dd(auth()->guard('usuarios')->attempt($credenciais));
-
-
+    	
     	if(Auth::guard('logins')->attempt($credenciais)){
     		return redirect()->route('inicio');
     	}else{
@@ -50,8 +49,44 @@ class ContaUsuario extends Controller
             } 
 	} 
 
-    public function cadastrotwo(RegisterTwoFormRequest $request){
-        return 'Serio?';
+    public function cadastrotwo(Request $request){
+        $rules = [
+           // 'cpf' => 'required|between:11,11',
+           // 'rg' => 'required|between:8,10',
+            'datanasc' => 'required',
+            'genero' => 'required',
+            'outro' => 'string',
+            'cep' => 'required',
+            'numero' => 'numeric|min:0',
+            'password' => 'required|between:5,60',
+        ];
+
+        $messages = [
+            'cpf.required' => 'O campo CPF é obrigatório',
+            'cpf.between' => 'O campo CPF deve conter 11 dígitos',
+            'rg.required' => 'O campo RG é obrigatório',
+            'RG.between' => 'O campo RG deve conter 9 dígitos',
+            'datanasc.required' => 'O campo Data de nascimento é obrigatório',
+            'genero.required' => 'O campo Gênero é obrigatório',
+            'outro.string' => 'O campo Qual gênero? deve possui apenas letras',
+            'numero.numeric' => 'O campo Número deve conter apenas números',
+            'password.required' =>  'O campo Senha é obrigatório',
+            'password.between' => 'O campo Senha deve conter entre 5 e 60 caracteres',
+        ];
+
+        $validate = validator($request->all(), $rules,$messages);
+
+        $validator->after(function ($validate) {
+            if (strlen($request->get('cpf')->size) == 6 || strlen($request->get('cpf')->size) == 9 ) {
+                $validator->errors()->add('field', 'Something is wrong with this field!');
+            }
+        });
+
+        if($validate->fails() ){
+            return $validate;
+        }
+
+        return 'validou';
     } 
 
     public function logout(){

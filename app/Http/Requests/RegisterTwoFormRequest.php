@@ -31,7 +31,7 @@ class RegisterTwoFormRequest extends FormRequest
             'outro' => 'string',
             'cep' => 'required',
             'numero' => 'numeric|min:0'
-            'password' => 'required|between:5,60'
+            'password' => 'required|between:5,60',
         ];
     }
 
@@ -43,7 +43,10 @@ class RegisterTwoFormRequest extends FormRequest
             'RG.between' => 'O campo RG deve conter 9 dígitos',
             'datanasc.required' => 'O campo Data de nascimento é obrigatório',
             'genero.required' => 'O campo Gênero é obrigatório',
-            'outro.string' => 'O campo Qual gênero? deve possui apenas letras'
+            'outro.string' => 'O campo Qual gênero? deve possui apenas letras',
+            'numero.numeric' => 'O campo Número deve conter apenas números',
+            'password.required' =>  'O campo Senha é obrigatório',
+            'password.between' => 'O campo Senha deve conter entre 5 e 60 caracteres',
         ];
     }
 }

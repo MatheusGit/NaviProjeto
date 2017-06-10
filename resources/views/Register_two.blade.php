@@ -38,7 +38,7 @@
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" maxlength="14" placeholder='CPF' required>
+                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF'  required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -52,7 +52,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="6" maxlength="9" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -76,10 +76,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="datanasc" class="col-md-4 control-label">Gênero</label>
+                        <div class="form-group{{ $errors->has('genero') ? ' has-error' : '' }}">
+                            <label for="genero" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <select id="select_genero" name="genero" onchange="verificaroutro()">
+                                <select id="select_genero" name="genero" onchange="verificaroutro()" required>
                                     <option value="" disabled selected>Escolha uma opção</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
@@ -127,7 +127,7 @@
                             <div class="form-group">
                             <label for="datanasc" class="col-md-4 control-label">Complemento?</label>
                             <div class="col-md-6">
-                                <select id="complemento" name="complemento" onchange="verificarcomplemento()">
+                                <select id="complemento" name="complemento" onchange="verificarcomplemento()" required>
                                     <option value="" disabled selected>Sim ou não?</option>
                                     <option value="Sim">Sim</option>
                                     <option value="Nao">Não</option>
@@ -203,6 +203,6 @@
         </div>
     </div>
 </div>
-                        <
+                       
 
 @endsection
