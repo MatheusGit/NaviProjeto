@@ -16,7 +16,6 @@ class CreatePessoalTable extends Migration
         Schema::create('pessoal', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('login_id')->unsigned();
-            $table->string('name');
             $table->integer('cpf');
             $table->foreign('login_id')
                     ->references('id')
