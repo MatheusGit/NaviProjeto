@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
+use App\Pessoal;
+use View;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,9 +15,18 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+    public function boot(Request $request)
+    {   
+        /*
+            $usuario = Auth::guard('logins')->user();
+            if($usuario == null){
+                View::share('info','nulo');
+            }else{
+                $info = $usuario->login;
+                View::share('info',$info);
+            }
+         */   
+            
     }
 
     /**

@@ -20,7 +20,13 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 		return view('inicio');	
 	})->name('inicio');
 
+	Route::get('editar',function(){
+		return 'editar';
+	})->name('editar');
+
 	Route::get('logout','ContaUsuario@logout')->name('sair');
+
+	Route::post('imagem','CRUD@imagem')->name('imagem');
 });
 
 Route::group(['middleware' => 'NoAuthUsuario'],function(){

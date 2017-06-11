@@ -15,7 +15,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style type="text/css">
-
+        #meusdados{
+            text-align: left;
+            font-size: 15px;
+            font-weight: bold;  
+        }
+        #avatar{
+            margin-bottom: 10px;
+        }
+        #todo{
+            margin-top: 70px;
+        }
     </style>
 </head>
 <body>
@@ -47,15 +57,16 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img src="/uploads/avatar/{{auth()->guard('logins')->user()->avatar}}" style="width:30px; height:30px; float:left; border-radius: 50%; margin-right: 5px; margin-bottom: 5px;" >
                                     {{ auth()->guard('logins')->user()->name}} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('sair') }}">Sair
-                                        </a>
+                                    <li>                                        
+                                        <a href="{{ route('sair') }}"><i class="fa fa-btn fa-sign-out"> </i> Sair</a>
                                     </li>
                                 </ul>
                             </li>

@@ -10,6 +10,7 @@ use App\login;
 use App\Pessoal;
 use validate;
 use Auth;
+use View;
 
 class ContaUsuario extends Controller
 {
@@ -21,7 +22,7 @@ class ContaUsuario extends Controller
 
 	public function login(LoginFormRequest $request){
 		$credenciais = ["email" => $request->get('email'),"password" => $request->get('password')];
-    	
+
     	if(Auth::guard('logins')->attempt($credenciais)){
     		return redirect()->route('inicio');
     	}else{
