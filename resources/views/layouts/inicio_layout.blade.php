@@ -74,8 +74,23 @@
                 </div>
             </div>
         </nav>
-
+        <div class="container">
+         <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div id="avatar">
+                <img src="/uploads/avatar/{{auth()->guard('logins')->user()->avatar}}" style="width:150px; height:150px; float:left; border-radius: 50%; margin-right: 25px; margin-bottom: 100px;" >
+                <h2> Perfil de {{auth()->guard('logins')->user()->name}}</h2>
+                <form enctype="multipart/form-data" action="{{route('imagem')}}" method="POST">
+                    <label>Alterar foto do perfil</label>
+                    <input type="file" name="avatar" accept="image/*">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="submit" value="Enviar imagem" class="pull-right btn btn-sm btn-primary">
+                </form>
+              </div>
         @yield('content')
+                </div>
+            </div>
+        </div>  
     </div>
 
     <!-- Scripts -->
