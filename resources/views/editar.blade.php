@@ -2,8 +2,13 @@
 
 @section('content')
                     <div class="panel panel-default" >
-                	   <div id="meusdados" class="panel-heading">
-                            <b>Meus dados &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> 
+                	   <div id="meusdados" class="panel-heading" style="text-align: center;">
+                            <a href="{{route('inicio')}}"> 
+                                       <i class="glyphicon glyphicon-chevron-left"></i>
+                                       Página incial
+                                    </a>
+                                    &nbsp&nbsp&nbsp
+                                    <b>Meus dados - Edição/Criação&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b> 
                         </div>
                         <div class="panel-body">
                               <form class="form-horizontal" role="form" method="POST" action="{{ route('salvar') }}">
@@ -24,10 +29,10 @@
                         <label id="labeldados">Dados pessoais:</label>
 
                          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Nome</label>
+                            <label for="name" class="col-md-4 control-label">Nome</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='Seu nome' value="{{$user->name or old('name')}}"  required>
+                                <input id="name" type="text" class="form-control" name="name" min="14" max="14" placeholder='Seu nome' value="{{$user->name or old('name')}}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -38,10 +43,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">CPF</label>
+                            <label for="cpf" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF' value="{{$info->cpf or old('name')}}" required>
+                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF' value="{{$info->cpf or old('cpf')}}" required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -55,7 +60,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" value="{{$info->rg or old('rg')}}" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -69,7 +74,7 @@
                             <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" required>
+                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" value="{{$info->datanasc or old('datanasc')}}" required>
 
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">
@@ -78,15 +83,19 @@
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group{{ $errors->has('genero') ? ' has-error' : '' }}">
                             <label for="genero" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <select id="select_genero" name="genero" onchange="verificaroutro()" required>
-                                    <option value="" disabled selected>Escolha uma opção</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
-                                    <option value="Outro">Outro...</option>
+                                <select id="select_genero" name="genero_select" value="{{$info->select_genero or old('select_genero')}}"  onchange="verificaroutro()" required>
+                                    <option value="" disabled selected>Selecione seu gênero</option>
+                                    @foreach($generos_select as $g)
+                                        <option value="{{$g}}"
+                                            @if($info != null && $info->genero_select == $g)
+                                                selected
+                                            @endif
+                                            >{{$g}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -105,7 +114,8 @@
                         <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">CEP</label>
                             <div class="col-md-6">
-                                <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" required>
+                                <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" 
+                                    value="{{$info->cep or old('cep')}}" required>
                                 <span class="has-error">
                                      <strong class="has-error" id="cepstrong"></strong>
                                 </span>
@@ -113,6 +123,7 @@
                         </div>    
 
                         <div id="cep">
+                        <div >
                             <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">Rua</label>
                             <div class="col-md-6">
@@ -123,17 +134,22 @@
                             <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">Número</label>
                             <div class="col-md-6">
-                                <div id="inputnumero"></div>
+                               <div id="inputnumero"></div>
                             </div>
                             </div>
 
                             <div class="form-group">
                             <label for="datanasc" class="col-md-4 control-label">Complemento?</label>
                             <div class="col-md-6">
-                                <select id="complemento" name="complemento" onchange="verificarcomplemento()" required>
+                                <select id="complemento" name="complemento_select" onchange="verificarcomplemento()">
                                     <option value="" disabled selected>Sim ou não?</option>
-                                    <option value="Sim">Sim</option>
-                                    <option value="Nao">Não</option>
+                                     @foreach($complementos_select as $g)
+                                        <option value="{{$g}}"
+                                            @if($info != null && $info->complemento_select == $g)
+                                                selected
+                                            @endif
+                                            >{{$g}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             </div>
@@ -168,24 +184,7 @@
 
                             
                         </div>
-
-                        <hr>
-
-                        <label id="labeldados">Segurança:</label>
-
-                        <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Senha</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
                         <hr>
 
                         <div class="form-group">

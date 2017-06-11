@@ -15,18 +15,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style type="text/css">
-        #meusdados{
-            text-align: left;
+        #register{
+            text-align: center;
             font-size: 15px;
             font-weight: bold;  
         }
-        #avatar{
-            margin-bottom: 10px;
-        }
-        #todo{
-            margin-top: 0px;
-        }
-    
+
         #invisivel{
               display:none;
         }       
@@ -40,8 +34,8 @@
         }
 
         #botoes{
-        	width: 1500px;
-		}	
+            width: 1500px;
+        }   
 
         #labeldados{
             display: block;
@@ -55,18 +49,19 @@
             width:200px;
             
             font-size: 14px;
-        }	   
+        }      
+   
 
 
     </style>
 
     
     <script>
-        function verificaroutro() {
+            function verificaroutro() {
             var option = document.getElementById('select_genero').value;
             var valuee = "Outro";
                 if(option == valuee){
-                    document.getElementById("inputoutro").innerHTML = '<input type="text" class="form-control" name= "outro" placeholder="Outro..." required>';
+                    document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}'' placeholder='Outro...' required>";
                     document.getElementById("invisivel").style.display = 'block';
                 }else{
                     document.getElementById("inputoutro").innerHTML = '';
@@ -78,12 +73,33 @@
             var option = document.getElementById('complemento').value;
             var valuee = "Sim";
                 if(option == valuee){
-                    document.getElementById("inputcomplemento").innerHTML = '<input type="text" class="form-control" name= "complemento" placeholder="Complemento..." required>';
+                    document.getElementById("inputcomplemento").innerHTML = "<input type='text' class='form-control' name='complemento' placeholder='Complemento...' value='{{$info->complemento or old('complemento')}}'>";
                     document.getElementById("divcomplemento").style.display = 'block';
                 }else{
                     document.getElementById("inputcomplemento").innerHTML = '';
                     document.getElementById("divcomplemento").style.display = 'none';
                 }
+        }
+
+        function vercep(){
+             var cepvalue = document.getElementById("cepmask").value;
+             document.getElementById("cepmask").value = '';
+             if(cepvalue !== null ){
+                 pesquisacep(cepvalue);
+                 document.getElementById("cepmask").value = cepvalue;
+             }
+
+             var selectgenero = document.getElementById("select_genero").value;
+             if(selectgenero == "Outro"){
+                document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}'' placeholder='Outro...' required>";
+                document.getElementById("invisivel").style.display = 'block';
+             }
+
+             var selectcomplemento = document.getElementById("complemento").value;
+             if(selectcomplemento == "Sim"){
+                document.getElementById("inputcomplemento").innerHTML = "<input type='text' class='form-control' name='complemento' placeholder='Complemento...' value='{{$info->complemento or old('complemento')}}'>";
+                    document.getElementById("divcomplemento").style.display = 'block';
+             }
         }
 
         function limpa_formulário_cep() {
@@ -92,7 +108,7 @@
             document.getElementById("inputnumero").innerHTML ='';
             document.getElementById('complemento').value = 'Nao';
 
-            document.getElementById('cep').value=("");
+            document.getElementById('cepmask').value=("");
             document.getElementById('rua').value=("");
             document.getElementById('bairro').value=("");
             document.getElementById('cidade').value=("");
@@ -105,7 +121,8 @@
                 document.getElementById('cepstrong').innerHTML = "";
 
                 document.getElementById("cep").style.display = 'block';
-                document.getElementById("inputnumero").innerHTML ='<input type="number" class="form-control" id="numero" name="numero" min="0" placeholder="Número de sua casa" required>';
+                document.getElementById("inputnumero").innerHTML =  "<input type='number' class='form-control' id='numero' name='numero' min='0' placeholder='Número de sua casa' value='{{$info->numero or old('numero')}}'>";
+
 
                 document.getElementById('rua').value=(conteudo.logradouro);
                 document.getElementById('bairro').value=(conteudo.bairro);
@@ -147,7 +164,7 @@
         }
      </script>
 </head>
-<body>
+<body onload="vercep();">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
