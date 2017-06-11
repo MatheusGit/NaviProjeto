@@ -9,10 +9,11 @@ class Pessoal extends Model
     protected $table = 'pessoal';
 
     protected $fillable = [
-		'cpf', 'rg', 'datanasc', 'genero', 'numero', 'cep','complemento',
+		'cpf', 'rg', 'datanasc', 'genero', 'numero', 'cep','complemento', 'login_id',
     ];
-
-    public function login(){
-    	return $this->belongTo('App/login','login_id');
+    
+    public function logint(){
+    	return $this->belongsTo('App/login');
     }
+    
 }

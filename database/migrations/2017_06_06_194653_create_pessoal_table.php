@@ -16,17 +16,19 @@ class CreatePessoalTable extends Migration
         Schema::create('pessoal', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('login_id')->unsigned();
-            $table->integer('cpf');
+            $table->string('cpf')->nullable();
             $table->foreign('login_id')
                     ->references('id')
                     ->on('logins')
                     ->onDelete('cascade');
-            $table->integer('numero');
+            $table->integer('numero')->nullable();
             $table->string('complemento')->nullable();
-            $table->integer('rg');
-            $table->integer('cep');
-            $table->integer('datanasc');
-            $table->string('genero');
+            $table->string('rg')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('datanasc')->nullable();
+            $table->enum('genero_select',['Masculino','Feminino','Outro'])->nullable();
+            $table->enum('complemento_select',['Sim','Nao'])->nullable();
+            $table->string('outro')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
