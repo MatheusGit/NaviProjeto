@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/',function(){
-	return "feliz?";
-});
-
 Route::group(['middleware' => 'AuthUsuario'],function(){
 	Route::get('inicio',function(){
 		return view('inicio');	
@@ -29,12 +25,14 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 	Route::post('imagem','CRUD@imagem')->name('imagem');
 
 	Route::post('inicio','CRUD@salvar')->name('salvar');
+
+	Route::get('excluir','CRUD@excluir')->name('excluir');
 });
 
 Route::group(['middleware' => 'NoAuthUsuario'],function(){
 	Route::get('login',function(){
 		return view('login');
-	});
+	})->name('loginget');
 
 	Route::get('cadastro',function(){
 		return view('register');

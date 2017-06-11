@@ -26,9 +26,32 @@
         #icones{
             text-align: right;
         }
+
+        #labeldados{
+            display: block;
+            width:200px;
+          
+            font-size: 14px;
+        } 
+
+        #labelendereco{
+            display: inline-block;
+            width:200px;
+            
+            font-size: 14px;
+        }
     </style>
+
+    <script type="text/javascript">
+        function vercep(){
+             var cepvalue = document.getElementById("cep").value;
+             if(cepvalue !== null ){
+                 pesquisacep(cepvalue);
+             }
+        }
+    </script>
 </head>
-<body>
+<body onload="vercep();">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -97,5 +120,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

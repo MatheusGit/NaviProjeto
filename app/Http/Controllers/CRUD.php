@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DadosFormRequest;
 use App\Pessoal;
 use App\logins;
 use Image;
@@ -34,7 +35,49 @@ class CRUD extends Controller
             $user->update(['avatar' => $filename]);
         }
 
+        return redirect()
+                ->back()
+                ->withInput();
+    }
+
+    public function salvar(DadosFormRequest $request){
+        $dataForm = $request->all();
+        $dataForm['login_id'] = Auth::guard('logins')->user()->id;
+
+
+
+        $info = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
+
+        if ($info == null){
+            $this->create($request);
+        }else{
+            $this->update($request);
+        }
+
         return redirect()->route('inicio');
+    }
+
+    public function create(Request $request){
+        $dataForm = $request->all();
+        $dataForm['login_id'] = Auth::guard('logins')->user()->id;
+
+        $pessoal = new Pessoal;
+        $insert = $pessoal->create($dataForm); 
+    }
+
+    public function update(Request $request){
+        $dataForm = $request->all();
+        $dataForm['login_id'] = Auth::guard('logins')->user()->id;
+
+        $pessoal = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
+        $insert = $pessoal->update($dataForm);
+    }  
+
+    public function excluir(){
+        $pessoal = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
+        $insert = $pessoal->delete();
+
+        return redirect()->back();
     }
 
 }
