@@ -20,6 +20,10 @@ class AuthUsuario
 
         if (Auth::guard('logins')->check()) {
             $usuario = Auth::guard('logins')->user();
+            $name = Auth::guard('logins')->user()->name;
+            $email = Auth::guard('logins')->user()->email;
+            View::share('name',$name);
+            View::share('email',$email);
             if($usuario == null){
                 View::share('info','nulo');
             }else{

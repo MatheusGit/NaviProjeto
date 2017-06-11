@@ -21,7 +21,7 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 	})->name('inicio');
 
 	Route::get('editar',function(){
-		return 'editar';
+		return view('editar');
 	})->name('editar');
 
 	Route::get('logout','ContaUsuario@logout')->name('sair');
