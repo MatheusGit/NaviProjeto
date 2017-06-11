@@ -27,6 +27,8 @@ Route::group(['middleware' => 'AuthUsuario'],function(){
 	Route::get('logout','ContaUsuario@logout')->name('sair');
 
 	Route::post('imagem','CRUD@imagem')->name('imagem');
+
+	Route::post('inicio','CRUD@salvar')->name('salvar');
 });
 
 Route::group(['middleware' => 'NoAuthUsuario'],function(){
