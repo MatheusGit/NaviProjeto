@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use View;   
 
 class AuthUsuario
 {
@@ -16,7 +17,16 @@ class AuthUsuario
      */
     public function handle($request, Closure $next)
     {
+
         if (Auth::guard('logins')->check()) {
+            $usuario = Auth::guard('logins')->user();
+            if($usuario == null){
+                View::share('info','nulo');
+            }else{
+               $info = $usuario->login;
+               View::share('info',$info);     
+            }
+
             return $next($request);           
         }
         return redirect()->route('login');        
