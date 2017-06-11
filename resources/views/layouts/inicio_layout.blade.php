@@ -16,15 +16,15 @@
 
     <style type="text/css">
         #meusdados{
-            text-align: left;
+            text-align: center;
             font-size: 15px;
             font-weight: bold;  
         }
         #avatar{
             margin-bottom: 10px;
         }
-        #todo{
-            margin-top: 70px;
+        #icones{
+            text-align: right;
         }
     </style>
 </head>
@@ -74,9 +74,9 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+       <div class="container">
          <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-8 col-md-offset-2" style="height: 190px;">
             <div id="avatar">
                 <img src="/uploads/avatar/{{auth()->guard('logins')->user()->avatar}}" style="width:150px; height:150px; float:left; border-radius: 50%; margin-right: 25px; margin-bottom: 100px;" >
                 <h2> Perfil de {{auth()->guard('logins')->user()->name}}</h2>
@@ -87,6 +87,8 @@
                     <input type="submit" value="Enviar imagem" class="pull-right btn btn-sm btn-primary">
                 </form>
               </div>
+          </div>   
+           <div class="col-md-8 col-md-offset-2"> 
         @yield('content')
                 </div>
             </div>
