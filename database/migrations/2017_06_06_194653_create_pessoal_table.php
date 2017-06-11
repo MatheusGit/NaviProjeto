@@ -21,7 +21,10 @@ class CreatePessoalTable extends Migration
                     ->references('id')
                     ->on('logins')
                     ->onDelete('cascade');
+            $table->integer('numero');
+            $table->string('complemento')->nullable();
             $table->integer('rg');
+            $table->integer('cep');
             $table->integer('datanasc');
             $table->string('genero');
             $table->rememberToken();

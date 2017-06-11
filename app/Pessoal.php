@@ -9,7 +9,7 @@ class Pessoal extends Model
     protected $table = 'pessoal';
 
     protected $fillable = [
-		'cpf', 'rg', 'datanasc', 'genero',
+		'cpf', 'rg', 'datanasc', 'genero', 'numero', 'cep','complemento',
     ];
 
     public function login(){
