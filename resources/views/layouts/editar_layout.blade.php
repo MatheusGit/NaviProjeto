@@ -73,7 +73,7 @@
             var option = document.getElementById('complemento').value;
             var valuee = "Sim";
                 if(option == valuee){
-                    document.getElementById("inputcomplemento").innerHTML = "<input type='text' class='form-control' name='complemento' placeholder='Complemento...' value='{{$info->complemento or old('complemento')}}'>";
+                    document.getElementById("inputcomplemento").innerHTML = "<input type='text' class='form-control' name='complemento' placeholder='Complemento...' value='{{$info->complemento or old('complemento')}}' required>";
                     document.getElementById("divcomplemento").style.display = 'block';
                 }else{
                     document.getElementById("inputcomplemento").innerHTML = '';

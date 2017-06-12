@@ -32,7 +32,7 @@
                             <label for="name" class="col-md-4 control-label">Nome</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" min="14" max="14" placeholder='Seu nome' value="{{$user->name or old('name')}}" required>
+                                <input id="name" type="text" class="form-control" name="name" min="14" max="14" placeholder='Seu nome' value="{{$user->name or old('name')}}" >
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -46,7 +46,7 @@
                             <label for="cpf" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF' value="{{$info->cpf or old('cpf')}}" required>
+                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF' value="{{$info->cpf or old('cpf')}}" >
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" value="{{$info->rg or old('rg')}}" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" value="{{$info->rg or old('rg')}}" >
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -74,7 +74,7 @@
                             <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" value="{{$info->datanasc or old('datanasc')}}" required>
+                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" value="{{$info->datanasc or old('datanasc')}}" >
 
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">
@@ -87,7 +87,7 @@
                         <div class="form-group{{ $errors->has('genero') ? ' has-error' : '' }}">
                             <label for="genero" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <select id="select_genero" name="genero_select" value="{{$info->select_genero or old('select_genero')}}"  onchange="verificaroutro()" required>
+                                <select id="select_genero" name="genero_select" value="{{$info->select_genero or old('select_genero')}}"  onchange="verificaroutro()" >
                                     <option value="" disabled selected>Selecione seu gênero</option>
                                     @foreach($generos_select as $g)
                                         <option value="{{$g}}"
@@ -115,7 +115,7 @@
                             <label for="rg" class="col-md-4 control-label">CEP</label>
                             <div class="col-md-6">
                                 <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" 
-                                    value="{{$info->cep or old('cep')}}" required>
+                                    value="{{$info->cep or old('cep')}}" >
                                 <span class="has-error">
                                      <strong class="has-error" id="cepstrong"></strong>
                                 </span>
