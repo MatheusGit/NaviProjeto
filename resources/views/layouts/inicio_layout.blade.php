@@ -44,10 +44,35 @@
 
     <script type="text/javascript">
         function vercep(){
-             var cepvalue = document.getElementById("cep").value;
+             var cepvalue = document.getElementById("cepmask").value;
              if(cepvalue !== null ){
                  pesquisacep(cepvalue);
              }
+        }
+
+        function meu_callback(conteudo) {
+
+            if (!("erro" in conteudo)) {    
+                document.getElementById('rua').innerHTML=(conteudo.logradouro);
+                document.getElementById('bairro').innerHTML=(conteudo.bairro);
+                document.getElementById('cidade').innerHTML=(conteudo.localidade);
+                document.getElementById('estado').innerHTML=(conteudo.uf);
+            } 
+        }
+
+        function pesquisacep(valor){
+                var cep = valor.replace(/\D/g, '');
+                if (cep != "") {
+
+                var validacep = /^[0-9]{8}$/;
+
+                if(validacep.test(cep)) {
+
+                    var script = document.createElement('script');
+                    script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                    document.body.appendChild(script);
+                } 
+            } 
         }
     </script>
 </head>

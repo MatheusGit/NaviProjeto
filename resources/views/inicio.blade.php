@@ -42,7 +42,7 @@
                          <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Email:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$email or ''}}</p>
+                                   <p class="form-control-static"> {{$email or '???'}}</p>
                                 </div>   
                         </div>
 
@@ -53,14 +53,14 @@
                          <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Nome:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$name or ''}}</p>
+                                   <p class="form-control-static"> {{$name or '???'}}</p>
                                 </div>   
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">CPF:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$info->cpf or ''}}</p>
+                                   <p class="form-control-static"> {{$info->cpf or '???'}}</p>
                                 </div>   
                         </div>
 
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">RG:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$info->rg or ''}}</p>
+                                   <p class="form-control-static"> {{$info->rg or '???'}}</p>
                                 </div>   
                         </div>
 
@@ -85,9 +85,9 @@
                                 <div class="col-md-6">
                                    <p class="form-control-static"> 
                                    @if($info->genero_select == "Outro")
-                                      {{$info->outro or ''}}
+                                      {{$info->outro or '???'}}
                                    @else
-                                       {{$info->genero_select or ''}} 
+                                       {{$info->genero_select or '???'}} 
                                    @endif       
                                    </p>
                                 </div>   
@@ -100,21 +100,22 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">CEP:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$info->cep or ''}}</p>
+                                    <input type="hidden" name="cpfinput" id="cepmask" value="{{$info->cep or ''}}">
+                                   <p class="form-control-static"> {{$info->cep or '???'}}</p>
                                 </div>   
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Rua:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> </p>
+                                   <p class="form-control-static" id="rua"> ??? </p>
                                 </div>   
                         </div>
 
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Número:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static">{{$info->numero or ''}} </p>
+                                   <p class="form-control-static">{{$info->numero or '???'}} </p>
                                 </div>   
                         </div>
 
@@ -123,7 +124,7 @@
                                 <div class="col-md-6">
                                    <p class="form-control-static">
                                      @if($info->complemento_select == "Sim")
-                                          {{$info->complemento or ''}}
+                                          {{$info->complemento or '???'}}
                                      @else
                                           Não
                                      @endif        
@@ -135,21 +136,21 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Bairro:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"></p>
+                                   <p class="form-control-static" id="bairro" >???</p>
                                 </div>   
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Cidade:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"></p>
+                                   <p class="form-control-static" id="cidade">???</p>
                                 </div>   
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Estado:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"></p>
+                                   <p class="form-control-static" id="estado">???</p>
                                 </div>   
                         </div>
 
