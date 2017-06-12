@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\DadosFormRequest;
 use App\Pessoal;
-use App\logins;
+use App\login;
 use Image;
 use Auth;
+use Validator;
 
 class CRUD extends Controller
 {
@@ -40,11 +41,24 @@ class CRUD extends Controller
                 ->withInput();
     }
 
-    public function salvar(DadosFormRequest $request){
+    public function salvar(Request $request){
         $dataForm = $request->all();
+
         $dataForm['login_id'] = Auth::guard('logins')->user()->id;
 
+        if(isset($dataForm['genero_select']) && $dataForm['genero_select'] != "Outro"){
+            $dataForm['outro'] = null;
+        }
 
+        if(isset($dataForm['complemento_select']) && $dataForm['complemento_select'] == "Nao"){
+            $dataForm['complemento'] = null;
+        }
+
+        if(isset($dataForm['cep']) && $dataForm['cep'] == null || $dataForm['cep'] == ''){
+            $dataForm['numero'] = null;
+            $dataForm['complemento_select'] = null;
+            $dataForm['complemento'] = null;
+        }
 
         $info = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
 
@@ -71,6 +85,8 @@ class CRUD extends Controller
 
         $pessoal = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
         $insert = $pessoal->update($dataForm);
+        $logins = Login::where('id',Auth::guard('logins')->user()->id)->get()->first();
+        $insertnome = $logins->update(['name' => $dataForm['name']]);
     }  
 
     public function excluir(){
@@ -81,3 +97,5 @@ class CRUD extends Controller
     }
 
 }
+
+
