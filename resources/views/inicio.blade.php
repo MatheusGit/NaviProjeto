@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Data de nascimento:</label>
                                 <div class="col-md-6">
-                                   <p class="form-control-static"> {{$info->datanasc}}</p>
+                                   <p class="form-control-static"> {{$info->datanasc or '???'}}</p>
                                 </div>   
                         </div>
 
@@ -126,7 +126,7 @@
                                      @if($info->complemento_select == "Sim")
                                           {{$info->complemento or '???'}}
                                      @else
-                                          Não
+                                          {{$info->complemento or '???'}}
                                      @endif        
                                    </p>
                                 </div>   
