@@ -24,8 +24,8 @@ class DadosFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => 'nullable|between:11,11',
-            'rg' => 'nullable|between:9,9',
+            'cpf' => 'nullable|between:14,14',
+            'rg' => 'nullable|between:11,11',
             'datanasc' => 'nullable',
             'genero' => 'nullable',
             'outro' => 'nullable | string',
@@ -37,9 +37,9 @@ class DadosFormRequest extends FormRequest
     public function messages(){
         return [
             'cpf.required' => 'O campo CPF é obrigatório',
-            'cpf.between' => 'O campo CPF deve conter 11 dígitos',
+            'cpf.between' => 'O campo CPF deve conter 14 dígitos',
             'rg.required' => 'O campo RG é obrigatório',
-            'RG.between' => 'O campo RG deve conter 9 dígitos',
+            'RG.between' => 'O campo RG deve conter 11 dígitos',
             'outro.string' => 'O campo Qual gênero? deve possui apenas letras',
             'numero.numeric' => 'O campo Número deve conter apenas números',
         ];

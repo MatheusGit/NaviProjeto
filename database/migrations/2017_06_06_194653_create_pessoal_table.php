@@ -29,7 +29,6 @@ class CreatePessoalTable extends Migration
             $table->enum('genero_select',['Masculino','Feminino','Outro'])->nullable();
             $table->enum('complemento_select',['Sim','Nao'])->nullable();
             $table->string('outro')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }

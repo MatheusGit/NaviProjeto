@@ -19,7 +19,6 @@ class CreateLoginsTable extends Migration
             $table->string('email',100)->unique();
             $table->string('avatar')->default('default.jpg');
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
