@@ -125,8 +125,10 @@
                                    <p class="form-control-static">
                                      @if($info->complemento_select == "Sim")
                                           {{$info->complemento or '???'}}
+                                     @elseif($info->complemento_select == null)
+                                          ???
                                      @else
-                                          Não
+                                          Não                                             
                                      @endif        
                                    </p>
                                 </div>   
