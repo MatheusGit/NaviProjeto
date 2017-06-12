@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
-use App\Http\Requests\RegisterTwoFormRequest;
+use App\Http\Requests\DadosFormRequest;
 use App\login;
 use App\Pessoal;
 use validate;
 use Auth;
 use View;
+use Crypt;
 
 class ContaUsuario extends Controller
 {
@@ -41,9 +42,10 @@ class ContaUsuario extends Controller
 
         if($insert){
             if($dataForm['botao'] == 'cadastro'){
-                return redirect()->route('login');
+            
+                return redirect()->route('loginget');
             }else if($dataForm['botao'] == 'passo'){
-                return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'] ]);
+                return view('register_two',['name' => $dataForm['name'],'email' => $dataForm['email'], 'password' => $dataForm['password'], ]);
             }            
         }else{
                 return redirect()
@@ -51,39 +53,43 @@ class ContaUsuario extends Controller
             } 
 	} 
 
-    public function cadastrotwo(Request $request){
-        $rules = [
-           // 'cpf' => 'required|between:11,11',
-           // 'rg' => 'required|between:8,10',
-            'datanasc' => 'required',
-            'genero' => 'required',
-            'outro' => 'string',
-            'cep' => 'required',
-            'numero' => 'numeric|min:0',
-            'password' => 'required|between:5,60',
-        ];
+    public function cadastrotwo(DadosFormRequest $request){
+        /*
+        $dataForm = $request->all();
+        $login = login::where('email',$dataForm['email']);
+        $senha = decryptString($dataForm['senhab']);
+        if($dataForm['password'] == $senha){
+            $dataForm = $request->all();
 
-        $messages = [
-            'cpf.required' => 'O campo CPF é obrigatório',
-            'cpf.between' => 'O campo CPF deve conter 11 dígitos',
-            'rg.required' => 'O campo RG é obrigatório',
-            'RG.between' => 'O campo RG deve conter 9 dígitos',
-            'datanasc.required' => 'O campo Data de nascimento é obrigatório',
-            'genero.required' => 'O campo Gênero é obrigatório',
-            'outro.string' => 'O campo Qual gênero? deve possui apenas letras',
-            'numero.numeric' => 'O campo Número deve conter apenas números',
-            'password.required' =>  'O campo Senha é obrigatório',
-            'password.between' => 'O campo Senha deve conter entre 5 e 60 caracteres',
-        ];
+            $dataForm['login_id'] = 
 
-        $validate = validator($request->all(), $rules,$messages);
+            if(isset($dataForm['genero_select']) && $dataForm['genero_select'] != "Outro"){
+                $dataForm['outro'] = null;
+            }
 
+            if(isset($dataForm['complemento_select']) && $dataForm['complemento_select'] == "Nao"){
+                $dataForm['complemento'] = null;
+            }
 
-        if($validate->fails() ){
-            return $validate;
+            if(isset($dataForm['cep']) && $dataForm['cep'] == null || $dataForm['cep'] == ''){
+                $dataForm['numero'] = null;
+                $dataForm['complemento_select'] = null;
+                $dataForm['complemento'] = null;
+            }    
+
+            $dataForm = $request->all();
+            $dataForm['login_id'] = 
+
+            $pessoal = new Pessoal;
+            $insert = $pessoal->create($dataForm);     
+
+            return view('login');
+        }{
+            return view('register_two');
         }
+        */
+        return "<h1> Cadastro passo 2 não implementado! </h1>";
 
-        return 'validou';
     } 
 
     public function logout(){
