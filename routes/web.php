@@ -34,6 +34,10 @@ Route::group(['middleware' => 'NoAuthUsuario'],function(){
 		return view('login');
 	})->name('loginget');
 
+	Route::get('/',function(){
+		return redirect()->route('lgonget');
+	});
+
 	Route::get('cadastro',function(){
 		return view('register');
 	});
