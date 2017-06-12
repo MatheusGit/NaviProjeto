@@ -60,7 +60,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" value="{{$info->rg or old('rg')}}" >
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" min="7" max="11" value="{{$info->rg or old('rg')}}" >
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -74,7 +74,7 @@
                             <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" value="{{$info->datanasc or old('datanasc')}}" >
+                                <input id="datanasc" type="text" class="form-control" max="10" name="datanasc" placeholder="dd/mm/aaaa" value="{{$info->datanasc or old('datanasc')}}" >
 
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">

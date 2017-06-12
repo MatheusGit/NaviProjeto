@@ -126,7 +126,7 @@
                                      @if($info->complemento_select == "Sim")
                                           {{$info->complemento or '???'}}
                                      @else
-                                          {{$info->complemento or '???'}}
+                                          Não
                                      @endif        
                                    </p>
                                 </div>   

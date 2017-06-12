@@ -61,7 +61,7 @@
             var option = document.getElementById('select_genero').value;
             var valuee = "Outro";
                 if(option == valuee){
-                    document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}'' placeholder='Outro...' required>";
+                    document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}' placeholder='Outro...' required>";
                     document.getElementById("invisivel").style.display = 'block';
                 }else{
                     document.getElementById("inputoutro").innerHTML = '';
@@ -91,7 +91,7 @@
 
              var selectgenero = document.getElementById("select_genero").value;
              if(selectgenero == "Outro"){
-                document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}'' placeholder='Outro...' required>";
+                document.getElementById("inputoutro").innerHTML = "<input type='text' class='form-control' name='outro' value='{{$info->outro or old('outro')}}' placeholder='Outro...' required>";
                 document.getElementById("invisivel").style.display = 'block';
              }
 

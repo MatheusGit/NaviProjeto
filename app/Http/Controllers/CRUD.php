@@ -43,22 +43,11 @@ class CRUD extends Controller
 
     public function salvar(Request $request){
         $dataForm = $request->all();
+        
 
         $dataForm['login_id'] = Auth::guard('logins')->user()->id;
 
-        if(isset($dataForm['genero_select']) && $dataForm['genero_select'] != "Outro"){
-            $dataForm['outro'] = null;
-        }
 
-        if(isset($dataForm['complemento_select']) && $dataForm['complemento_select'] == "Nao"){
-            $dataForm['complemento'] = null;
-        }
-
-        if(isset($dataForm['cep']) && $dataForm['cep'] == null || $dataForm['cep'] == ''){
-            $dataForm['numero'] = null;
-            $dataForm['complemento_select'] = null;
-            $dataForm['complemento'] = null;
-        }
 
         $info = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
 
@@ -76,7 +65,7 @@ class CRUD extends Controller
         $dataForm['login_id'] = Auth::guard('logins')->user()->id;
 
         $pessoal = new Pessoal;
-        $insert = $pessoal->create($dataForm); 
+        $pessoal->create($dataForm); 
     }
 
     public function update(Request $request){
@@ -84,7 +73,24 @@ class CRUD extends Controller
         $dataForm['login_id'] = Auth::guard('logins')->user()->id;
 
         $pessoal = Pessoal::where('login_id',Auth::guard('logins')->user()->id)->get()->first();
+
+        if(isset($dataForm['genero_select']) && $dataForm['genero_select'] != "Outro"){
+           $pessoal->update(['outro' => null]);
+        }
+
+        if(isset($dataForm['complemento_select']) && $dataForm['complemento_select'] == "Nao"){
+            $pessoal->update(['complemento' => null]);
+
+        }
+ 
+        if(isset($dataForm['cep']) && $dataForm['cep'] == null || $dataForm['cep'] == ''){
+            $pessoal->update(['numero' => null]);
+            $pessoal->update(['complemento_select' => null]);
+            $pessoal->update(['complemento' => null]);
+        }
+
         $insert = $pessoal->update($dataForm);
+
         $logins = Login::where('id',Auth::guard('logins')->user()->id)->get()->first();
         $insertnome = $logins->update(['name' => $dataForm['name']]);
     }  
