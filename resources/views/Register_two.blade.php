@@ -23,6 +23,8 @@
 
                          <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Email</label>
+                            <input type="hidden" name="email" value="{{$email}}">
+
                                 <div class="col-md-6">
                                     {{$email}}
                                 </div>   
@@ -32,13 +34,13 @@
 
                         <label id="labeldados">Dados pessoais:</label>
 
-                        
+                        <input type="hidden" name="senhab" value="{{$password}}">
 
                         <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF'  required>
+                                <input id="cpf" type="text" class="form-control" name="cpf" min="14" max="14" placeholder='CPF'  >
 
                                 @if ($errors->has('cpf'))
                                     <span class="help-block">
@@ -52,7 +54,7 @@
                             <label for="rg" class="col-md-4 control-label">RG</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" required>
+                                <input id="rg" type="text" class="form-control" name="rg" placeholder="RG" minlength="7" maxlength="11" >
 
                                 @if ($errors->has('rg'))
                                     <span class="help-block">
@@ -66,7 +68,7 @@
                             <label for="datanasc" class="col-md-4 control-label">Data de nascimento</label>
 
                             <div class="col-md-6">
-                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" required>
+                                <input id="datanasc" type="text" class="form-control" maxlength="10" name="datanasc" placeholder="dd/mm/aaaa" >
 
                                 @if ($errors->has('datanasc'))
                                     <span class="help-block">
@@ -79,7 +81,7 @@
                         <div class="form-group{{ $errors->has('genero') ? ' has-error' : '' }}">
                             <label for="genero" class="col-md-4 control-label">Gênero</label>
                             <div class="col-md-6">
-                                <select id="select_genero" name="genero" onchange="verificaroutro()" required>
+                                <select id="select_genero" name="genero_select" onchange="verificaroutro()" >
                                     <option value="" disabled selected>Escolha uma opção</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
@@ -102,7 +104,7 @@
                         <div class="form-group">
                             <label for="rg" class="col-md-4 control-label">CEP</label>
                             <div class="col-md-6">
-                                <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" required>
+                                <input type="text" id="cepmask" class="form-control" name="cep" size="10" maxlength="9" placeholder="Cep" onblur="pesquisacep(this.value);" >
                                 <span class="has-error">
                                      <strong class="has-error" id="cepstrong"></strong>
                                 </span>
@@ -127,7 +129,7 @@
                             <div class="form-group">
                             <label for="datanasc" class="col-md-4 control-label">Complemento?</label>
                             <div class="col-md-6">
-                                <select id="complemento" name="complemento" onchange="verificarcomplemento()" required>
+                                <select id="complemento" name="complemento_select" onchange="verificarcomplemento()" >
                                     <option value="" disabled selected>Sim ou não?</option>
                                     <option value="Sim">Sim</option>
                                     <option value="Nao">Não</option>

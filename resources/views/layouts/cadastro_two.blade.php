@@ -75,7 +75,7 @@
             var option = document.getElementById('complemento').value;
             var valuee = "Sim";
                 if(option == valuee){
-                    document.getElementById("inputcomplemento").innerHTML = '<input type="text" class="form-control" name= "complemento" placeholder="Complemento..." required>';
+                    document.getElementById("inputcomplemento").innerHTML = '<input type="text" class="form-control" name="complemento" placeholder="Complemento..." required>';
                     document.getElementById("divcomplemento").style.display = 'block';
                 }else{
                     document.getElementById("inputcomplemento").innerHTML = '';
@@ -206,8 +206,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     
